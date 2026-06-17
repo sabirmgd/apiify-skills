@@ -49,10 +49,11 @@ From a shell:
 
 ```bash
 codex plugin marketplace add sabirmgd/apiify-skills
+codex plugin add apiify@apiify
 codex
 ```
 
-Open `/plugins`, install **Apiify**, start a new thread, then invoke:
+Start a new thread, then invoke:
 
 ```text
 Use $apiify:apiify to apiify Instagram viral posts for keyword "ai agents" with JSON and CSV output.
@@ -62,6 +63,7 @@ For local development:
 
 ```bash
 codex plugin marketplace add .
+codex plugin add apiify@apiify
 codex
 ```
 
