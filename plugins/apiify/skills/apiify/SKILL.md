@@ -25,6 +25,8 @@ python3 scripts/doctor.py
 
 Do not paste user passwords, cookies, bearer tokens, or session IDs into chat or command history. Prefer headed browser login, browser state files, local `.env` files, or one-time throwaway credentials.
 
+The standard public harness is `agent-browser@0.15.1`, installed by `scripts/bootstrap.py` and verified by `scripts/doctor.py`. Do not assume ActionHub, ahbrowser, Patchright, or Playwright are already present on the user's machine. If a generated artifact needs a browser, use the packaged harness unless the artifact explicitly owns and documents another dependency.
+
 ## Required Clarifications
 
 For each target, lock these before building:
@@ -163,4 +165,3 @@ Bad output is:
 - a script with credentials in source;
 - unverified code that only compiles;
 - metadata that hides the runtime tier or risk.
-

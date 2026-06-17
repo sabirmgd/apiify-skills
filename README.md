@@ -4,6 +4,70 @@ Apiify is an agent skill/plugin for turning websites into callable APIs. It guid
 
 The core product idea is simple: pay the browser/LLM cost once during discovery, then run a deterministic script forever.
 
+## Why This Exists
+
+Agents are much better when they can call tools than when they have to manually drive browsers.
+
+Browser work is useful for discovery, login, and messy workflows, but it is a bad runtime primitive:
+
+- it is slow and expensive;
+- it breaks when UI text or layout changes;
+- it burns context on screenshots, DOM, and retries;
+- it repeats the same exploration every time;
+- it is hard to compose into larger agent workflows.
+
+APIs are the opposite: structured, cheap, callable, testable, and easy for agents to chain. The problem is that many useful websites either do not expose a public API, hide their data behind private browser calls, or require enough technical work that non-technical users cannot turn the workflow into a tool.
+
+Apiify bridges that gap. It helps an agent ask the right questions, research the public/private API surface, use a browser only when needed, and produce a script that another agent can call like a normal API.
+
+## The Agent Workflow Shift
+
+Without Apiify:
+
+```text
+agent -> open browser -> login -> click/search/filter -> scrape page -> retry on failure
+```
+
+With Apiify:
+
+```text
+one-time discovery -> generated script/API -> agent calls the script directly
+```
+
+That matters because once a workflow is converted into a deterministic script, it becomes a reusable capability. Any agent can call it, schedule it, combine it with other tools, export it to CSV, or wrap it as an endpoint.
+
+## Use Cases
+
+Apiify is useful when a person can get the data or complete the workflow in a browser, but there is no clean API available to the agent.
+
+Common examples:
+
+- **Turn search pages into datasets:** collect listings, posts, products, jobs, creators, grants, vendors, or public records into JSON/CSV.
+- **Give agents tools for logged-in portals:** convert repeatable CRM, analytics, marketplace, admin, or dashboard workflows into scripts agents can call.
+- **Make social/research workflows reusable:** pull public/trending posts, author metadata, engagement metrics, or media links from sites that are easier to inspect in-browser than through official APIs.
+- **Prototype integrations before official API access:** reverse engineer enough of the browser flow to validate a product idea, internal workflow, or automation before investing in a full integration.
+- **Help non-technical users get API-like access:** produce a readable script and CSV output instead of expecting them to understand auth headers, pagination, cookies, GraphQL, or browser devtools.
+- **Reduce agent runtime cost:** replace repeated browser navigation with a cheap deterministic HTTP call or script execution.
+- **Create agent-native tools:** once a workflow is apiified, Claude Code, Codex, or another agent can call it as part of a bigger plan.
+
+Example prompts:
+
+```text
+/apiify:apiify turn this real estate search page into a JSON/CSV extractor for price, address, agent, and listing URL.
+```
+
+```text
+Use $apiify:apiify to convert this logged-in analytics dashboard export into a reusable script. Browser login once, then replay the underlying API if possible.
+```
+
+```text
+/apiify:apiify find the API behind this product search page and generate a script that accepts --query and --limit.
+```
+
+## When Not To Use It
+
+Do not use Apiify to bypass access controls, paywalls, CAPTCHAs, account restrictions, or site rules. Prefer official APIs whenever they meet the need. For sensitive or high-volume use cases, review the target site's terms, rate limits, and privacy constraints first.
+
 ## What It Produces
 
 Each run should create an artifact folder like:
@@ -80,9 +144,35 @@ python3 plugins/apiify/skills/apiify/scripts/doctor.py
 
 Bootstrap installs:
 
-- `agent-browser` for browser discovery and logged-in flows.
+- `agent-browser@0.15.1` for browser discovery and logged-in flows.
 - Chrome for Testing via `agent-browser install`.
 - Python packages used by generated scripts: `requests` and `python-dotenv`.
+
+`doctor.py` verifies the same pinned `agent-browser` version. If a user has a different version installed, it fails and tells them to rerun bootstrap. You can override the pin deliberately with:
+
+```bash
+APIIFY_AGENT_BROWSER_VERSION=0.15.1 python3 plugins/apiify/skills/apiify/scripts/bootstrap.py --user
+```
+
+### Harness Model
+
+Apiify packages the harness as deterministic scripts plus a pinned browser CLI dependency. It does not expect every user to already have the same local setup.
+
+The standard public harness is:
+
+```text
+Apiify skill -> bootstrap.py -> agent-browser@0.15.1 -> Chrome for Testing
+```
+
+Older internal experiments used ActionHub/ahbrowser and Patchright directly. This public package does not depend on ActionHub or a local Patchright install. That is intentional: users should get one portable harness from the package, not whatever happens to be on the author's machine.
+
+Generated artifacts should still try to escape the browser at runtime:
+
+```text
+public API -> private XHR/GraphQL replay -> browser-login-then-HTTP -> DOM scrape
+```
+
+Browser automation is the discovery/login tool. The final output should be a script/API that agents can call cheaply.
 
 ## Skill Workflow
 

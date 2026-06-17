@@ -18,11 +18,29 @@ from pathlib import Path
 
 
 PYTHON_PACKAGES = ["requests", "python-dotenv"]
+DEFAULT_AGENT_BROWSER_VERSION = "0.15.1"
 
 
 def run(cmd: list[str], *, env: dict[str, str] | None = None) -> None:
     print("+ " + " ".join(cmd))
     subprocess.run(cmd, check=True, env=env)
+
+
+def get_agent_browser_version() -> str | None:
+    if not shutil.which("agent-browser"):
+        return None
+    proc = subprocess.run(
+        ["agent-browser", "--version"],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        timeout=20,
+        check=False,
+    )
+    if proc.returncode != 0:
+        return None
+    parts = (proc.stdout or "").strip().split()
+    return parts[-1] if parts else None
 
 
 def python_for_venv(venv_path: Path) -> Path:
@@ -54,15 +72,22 @@ def install_agent_browser(args: argparse.Namespace) -> None:
     if args.skip_agent_browser:
         return
 
-    if shutil.which("agent-browser"):
-        print("agent-browser already installed")
+    installed_version = get_agent_browser_version()
+    wanted_version = args.agent_browser_version
+    if installed_version == wanted_version:
+        print(f"agent-browser {installed_version} already installed")
     else:
         if not shutil.which("npm"):
             raise SystemExit(
-                "agent-browser is missing and npm is not available. "
-                "Install Node/npm or install agent-browser with Homebrew/Cargo."
+                "agent-browser is missing or wrong version and npm is not available. "
+                "Install Node/npm, then rerun bootstrap."
             )
-        run(["npm", "install", "-g", "agent-browser"])
+        if installed_version:
+            print(
+                f"Replacing agent-browser {installed_version} with pinned "
+                f"agent-browser {wanted_version}"
+            )
+        run(["npm", "install", "-g", f"agent-browser@{wanted_version}"])
 
     if not args.skip_browser_install:
         install_cmd = ["agent-browser", "install"]
@@ -88,6 +113,15 @@ def parse_args() -> argparse.Namespace:
         help="Do not install the agent-browser CLI.",
     )
     parser.add_argument(
+        "--agent-browser-version",
+        default=os.environ.get("APIIFY_AGENT_BROWSER_VERSION", DEFAULT_AGENT_BROWSER_VERSION),
+        help=(
+            "Pinned agent-browser version to install. Defaults to "
+            f"{DEFAULT_AGENT_BROWSER_VERSION}; can also be set with "
+            "APIIFY_AGENT_BROWSER_VERSION."
+        ),
+    )
+    parser.add_argument(
         "--skip-browser-install",
         action="store_true",
         help="Do not run agent-browser install.",
@@ -109,4 +143,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
