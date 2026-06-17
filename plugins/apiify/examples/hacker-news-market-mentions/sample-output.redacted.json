@@ -1,0 +1,31 @@
+{
+  "source": "hn.algolia.com/api/v1/search",
+  "query": "ai agents",
+  "count": 2,
+  "items": [
+    {
+      "title": "An AI agent published a hit piece on me",
+      "url": "https://example.invalid/hn-story-redacted",
+      "hn_url": "https://news.ycombinator.com/item?id=REDACTED",
+      "author": "example_author",
+      "points": 542,
+      "num_comments": 311,
+      "created_at": "2026-06-01T12:30:00Z",
+      "tags": ["story"],
+      "market_signal": "ai-agent-trust-risk",
+      "excerpt": "Discussion mentions AI agents, maintainer workflows, and automation risk."
+    },
+    {
+      "title": "Show HN: Sales research agents for small teams",
+      "url": "https://example.invalid/show-hn-redacted",
+      "hn_url": "https://news.ycombinator.com/item?id=REDACTED2",
+      "author": "another_author",
+      "points": 91,
+      "num_comments": 44,
+      "created_at": "2026-05-25T09:10:00Z",
+      "tags": ["story", "show_hn"],
+      "market_signal": "launch-feedback",
+      "excerpt": "Founders discuss lead research automation and data quality."
+    }
+  ]
+}

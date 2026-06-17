@@ -1,0 +1,51 @@
+{
+  "name": "hacker-news-market-mentions",
+  "source": "https://hn.algolia.com/api",
+  "approach": "public-search-api",
+  "runtime_tier": 1,
+  "description": "Search Hacker News public posts and normalize market mentions, launch reactions, and buyer-pain discussions.",
+  "business_value": "No-key market intelligence and technical audience monitoring.",
+  "inputs": [
+    {
+      "name": "query",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 20
+    }
+  ],
+  "outputs": [
+    "title",
+    "url",
+    "hn_url",
+    "author",
+    "points",
+    "num_comments",
+    "created_at",
+    "tags",
+    "market_signal",
+    "excerpt"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Uses public HN Algolia search."
+  },
+  "endpoints": [
+    "GET https://hn.algolia.com/api/v1/search"
+  ],
+  "pagination": {
+    "type": "page",
+    "fields": ["page", "hitsPerPage", "nbPages"]
+  },
+  "verification_command": "python3 apiified/hacker-news-market-mentions/script.py --query 'ai agents' --limit 10 --output hn-mentions.json",
+  "verification_result": "Live smoke checked HN Algolia search for 'ai agents' and received story rows without an API key.",
+  "known_risks": [
+    "Deleted stories can have partial fields.",
+    "HN is not representative of all buyers.",
+    "Comment-thread enrichment requires additional requests."
+  ]
+}

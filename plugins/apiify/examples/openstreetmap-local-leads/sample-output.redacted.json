@@ -1,0 +1,39 @@
+{
+  "source": "nominatim.openstreetmap.org/search",
+  "query": "dentist Austin Texas",
+  "count": 2,
+  "items": [
+    {
+      "name": "Dentist in Austin",
+      "display_name": "Dentist in Austin, West Slaughter Lane, Austin, Travis County, Texas, United States",
+      "category": "healthcare",
+      "type": "dentist",
+      "latitude": 30.1721,
+      "longitude": -97.8245,
+      "address": {
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States"
+      },
+      "osm_type": "node",
+      "osm_id": 123456789,
+      "lead_source_url": "https://www.openstreetmap.org/node/123456789"
+    },
+    {
+      "name": "Example Family Dentistry",
+      "display_name": "Example Family Dentistry, Austin, Travis County, Texas, United States",
+      "category": "healthcare",
+      "type": "dentist",
+      "latitude": 30.2672,
+      "longitude": -97.7431,
+      "address": {
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States"
+      },
+      "osm_type": "way",
+      "osm_id": 987654321,
+      "lead_source_url": "https://www.openstreetmap.org/way/987654321"
+    }
+  ]
+}

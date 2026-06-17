@@ -1,0 +1,52 @@
+{
+  "name": "wordpress-content-monitor",
+  "source": "https://developer.wordpress.org/rest-api/reference/posts/",
+  "approach": "public-wordpress-rest-api",
+  "runtime_tier": 1,
+  "description": "Read public WordPress REST posts and normalize content-monitoring rows for sales and marketing intelligence.",
+  "business_value": "No-key competitor blog, changelog, and content-campaign monitoring.",
+  "inputs": [
+    {
+      "name": "site_url",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 10
+    }
+  ],
+  "outputs": [
+    "site_url",
+    "post_id",
+    "title",
+    "url",
+    "published_at",
+    "modified_at",
+    "author",
+    "excerpt",
+    "categories",
+    "tags",
+    "monitor_reason"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Uses public WordPress REST posts when enabled by the site."
+  },
+  "endpoints": [
+    "GET {site_url}/wp-json/wp/v2/posts"
+  ],
+  "pagination": {
+    "type": "page",
+    "fields": ["page", "per_page", "X-WP-TotalPages"]
+  },
+  "verification_command": "python3 apiified/wordpress-content-monitor/script.py --site-url https://wordpress.org/news --limit 10 --output wordpress-posts.json",
+  "verification_result": "Live smoke checked wordpress.org/news REST posts and received post rows without an API key.",
+  "known_risks": [
+    "Not all WordPress sites expose REST posts.",
+    "Terms and robots policies still apply.",
+    "HTML content should be sanitized before reuse."
+  ]
+}

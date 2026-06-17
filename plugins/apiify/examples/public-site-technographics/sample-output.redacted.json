@@ -1,0 +1,43 @@
+{
+  "source": "public-html-and-headers",
+  "url": "https://www.shopify.com",
+  "count": 3,
+  "items": [
+    {
+      "url": "https://www.shopify.com",
+      "final_url": "https://www.shopify.com/",
+      "status_code": 200,
+      "detected_technology": "Shopify",
+      "category": "commerce-platform",
+      "evidence": "shopify domain and storefront assets detected",
+      "confidence": "high",
+      "source": "html",
+      "first_party": true,
+      "signal_for": "commerce"
+    },
+    {
+      "url": "https://www.shopify.com",
+      "final_url": "https://www.shopify.com/",
+      "status_code": 200,
+      "detected_technology": "Google Tag Manager",
+      "category": "analytics",
+      "evidence": "googletagmanager.com script reference",
+      "confidence": "medium",
+      "source": "script",
+      "first_party": false,
+      "signal_for": "marketing-ops"
+    },
+    {
+      "url": "https://www.shopify.com",
+      "final_url": "https://www.shopify.com/",
+      "status_code": 200,
+      "detected_technology": "Content Security Policy",
+      "category": "security-header",
+      "evidence": "content-security-policy header present",
+      "confidence": "medium",
+      "source": "headers",
+      "first_party": true,
+      "signal_for": "security-maturity"
+    }
+  ]
+}

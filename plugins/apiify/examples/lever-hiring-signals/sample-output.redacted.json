@@ -1,0 +1,31 @@
+{
+  "source": "api.lever.co/v0/postings",
+  "site": "anchorage",
+  "count": 2,
+  "items": [
+    {
+      "company_site": "anchorage",
+      "job_id": "redacted-job-1",
+      "title": "APAC Regional Lead, Stablecoin Solutions",
+      "team": "Business",
+      "department": "Go To Market",
+      "location": "Singapore",
+      "commitment": "Full-time",
+      "hosted_url": "https://jobs.lever.co/anchorage/redacted-job-1",
+      "apply_url": "https://jobs.lever.co/anchorage/redacted-job-1/apply",
+      "signal_tags": ["regional-expansion", "fintech", "enterprise-sales"]
+    },
+    {
+      "company_site": "anchorage",
+      "job_id": "redacted-job-2",
+      "title": "Product Manager",
+      "team": "Product",
+      "department": "Product",
+      "location": "United States",
+      "commitment": "Full-time",
+      "hosted_url": "https://jobs.lever.co/anchorage/redacted-job-2",
+      "apply_url": "https://jobs.lever.co/anchorage/redacted-job-2/apply",
+      "signal_tags": ["product-growth", "new-budget"]
+    }
+  ]
+}

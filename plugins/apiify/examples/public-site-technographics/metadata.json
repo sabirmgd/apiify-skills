@@ -1,0 +1,44 @@
+{
+  "name": "public-site-technographics",
+  "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers",
+  "approach": "public-html-and-header-inspection",
+  "runtime_tier": 2,
+  "description": "Inspect public website HTML, headers, scripts, and meta tags to produce lightweight technology signals.",
+  "business_value": "No-key technographic qualification for account scoring and outbound segmentation.",
+  "inputs": [
+    {
+      "name": "url",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    "url",
+    "final_url",
+    "status_code",
+    "detected_technology",
+    "category",
+    "evidence",
+    "confidence",
+    "source",
+    "first_party",
+    "signal_for"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Uses public website responses only."
+  },
+  "endpoints": [
+    "GET {url}"
+  ],
+  "pagination": {
+    "type": "none"
+  },
+  "verification_command": "python3 apiified/public-site-technographics/script.py --url https://www.shopify.com --output technographics.json",
+  "verification_result": "Live smoke checked a public website response and verified HTML/header inspection can run without an API key.",
+  "known_risks": [
+    "Only public client-side signals are visible.",
+    "Technology fingerprints can drift.",
+    "Commercial technographic data may still be better for exhaustive coverage."
+  ]
+}

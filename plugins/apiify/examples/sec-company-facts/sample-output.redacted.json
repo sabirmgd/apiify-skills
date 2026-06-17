@@ -1,0 +1,36 @@
+{
+  "source": "data.sec.gov/companyfacts",
+  "cik": "0000320193",
+  "concept": "us-gaap:Revenues",
+  "count": 2,
+  "items": [
+    {
+      "cik": "0000320193",
+      "entity_name": "Apple Inc.",
+      "taxonomy": "us-gaap",
+      "concept": "Revenues",
+      "label": "Revenues",
+      "unit": "USD",
+      "fiscal_year": 2025,
+      "fiscal_period": "FY",
+      "form": "10-K",
+      "filed_at": "2025-10-31",
+      "end_date": "2025-09-27",
+      "value": 416161000000
+    },
+    {
+      "cik": "0000320193",
+      "entity_name": "Apple Inc.",
+      "taxonomy": "us-gaap",
+      "concept": "Revenues",
+      "label": "Revenues",
+      "unit": "USD",
+      "fiscal_year": 2025,
+      "fiscal_period": "Q3",
+      "form": "10-Q",
+      "filed_at": "2025-08-01",
+      "end_date": "2025-06-28",
+      "value": 94036000000
+    }
+  ]
+}

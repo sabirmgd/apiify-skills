@@ -42,10 +42,10 @@ Apiify is useful when a person can get the data or complete the workflow in a br
 
 Common examples:
 
-- **Lead generation:** build local business lists, domain contact lists, startup launch lists, contract opportunity feeds, or technographic account lists.
-- **Sales triggers:** watch hiring boards, product launches, government opportunities, new funding/news mentions, and buyer-intent posts.
-- **Marketing intelligence:** monitor competitor ads, brand mentions, campaign angles, social pain points, and market narratives.
-- **News and market monitoring:** turn business news APIs, public feeds, and topic searches into structured alert rows.
+- **Lead generation:** build local business lists, startup lists, hiring-signal feeds, public-company account profiles, or ecommerce catalog monitors.
+- **Sales triggers:** watch public job boards, RSS feeds, sitemaps, product feeds, and market discussions for new pain or budget signals.
+- **Marketing intelligence:** monitor competitor content, launch reactions, product pages, pricing pages, and visible website stack signals.
+- **News and market monitoring:** turn public RSS feeds, public search APIs, and public content feeds into structured alert rows.
 - **Logged-in sales/admin portals:** convert repeatable CRM, analytics, marketplace, or dashboard workflows into scripts agents can call.
 - **Prototype integrations before official API access:** reverse engineer enough of the browser flow to validate a product idea or automation before building a full integration.
 - **Reduce agent runtime cost:** replace repeated browser navigation with a cheap deterministic HTTP call or script execution.
@@ -64,20 +64,26 @@ Use $apiify:apiify to convert this logged-in analytics dashboard export into a r
 /apiify:apiify find the API behind this product search page and generate a script that accepts --query and --limit.
 ```
 
-Business-focused example catalog:
+Business-focused no-key example catalog:
 
 | Example | Business job | Typical source |
 | --- | --- | --- |
-| `google-places-local-leads` | Local business prospect lists | Google Places API |
-| `hunter-domain-contacts` | Domain-to-contact enrichment | Hunter Domain Search |
-| `builtwith-technographic-leads` | Tech-stack based account scoring | BuiltWith Domain API |
-| `product-hunt-launch-leads` | Fresh startup and partnership leads | Product Hunt GraphQL |
+| `openstreetmap-local-leads` | Local business prospect lists | Nominatim/OpenStreetMap |
+| `public-site-technographics` | Visible stack/account scoring | Public HTML + headers |
+| `hacker-news-market-mentions` | Founder/technical market signals | HN Algolia search |
+| `rss-feed-monitor` | Company blog, press, and industry monitoring | Public RSS/Atom feeds |
+| `lever-hiring-signals` | Hiring intent and growth triggers | Lever public postings |
 | `greenhouse-hiring-signals` | Hiring intent and growth triggers | Greenhouse Job Board API |
-| `sam-gov-contract-opportunities` | B2G contract pipeline discovery | SAM.gov opportunities |
-| `meta-ad-library-monitor` | Competitor ad creative monitoring | Meta Ad Library API |
-| `reddit-buyer-intent-monitor` | Buyer pain and recommendation requests | Reddit API |
-| `newsapi-competitor-mentions` | Competitor and market news alerts | NewsAPI |
-| `gdelt-market-news-monitor` | Global market/news intelligence | GDELT DOC API |
+| `sec-company-facts` | Public-company account research | SEC EDGAR data APIs |
+| `shopify-product-feed-monitor` | Ecommerce competitor catalog/pricing | Public storefront product feeds |
+| `wordpress-content-monitor` | Competitor blog/content monitoring | WordPress REST posts |
+| `sitemap-content-inventory` | Competitor SEO/content inventory | Public XML sitemaps |
+
+The catalog validator rejects examples that require API keys, bearer tokens, or OAuth credentials. For live source checks, run:
+
+```bash
+python3 plugins/apiify/skills/apiify/scripts/smoke_no_key_examples.py
+```
 
 See `plugins/apiify/examples/yc-company-leads/` for a real directory-to-lead-list example. It turns YC's public company directory into a JSON/CSV extractor by discovering the underlying Algolia search API, with optional public profile enrichment for founder/social fields.
 

@@ -1,0 +1,35 @@
+{
+  "source": "shopify-products-json",
+  "store_url": "https://www.allbirds.com",
+  "count": 2,
+  "items": [
+    {
+      "store_url": "https://www.allbirds.com",
+      "product_id": 7193832652880,
+      "title": "Women's Lounger Lift - Rugged Beige",
+      "handle": "womens-lounger-lift-rugged-beige-stony-cream",
+      "product_url": "https://www.allbirds.com/products/womens-lounger-lift-rugged-beige-stony-cream",
+      "vendor": "Allbirds",
+      "product_type": "Shoes",
+      "tags": ["limited", "womens", "shoes"],
+      "published_at": "2026-06-16T13:56:35-07:00",
+      "variant_count": 8,
+      "price_min": "78.00",
+      "price_max": "98.00"
+    },
+    {
+      "store_url": "https://www.allbirds.com",
+      "product_id": 7193832652881,
+      "title": "Men's Runner Example",
+      "handle": "mens-runner-example",
+      "product_url": "https://www.allbirds.com/products/mens-runner-example",
+      "vendor": "Allbirds",
+      "product_type": "Shoes",
+      "tags": ["mens", "running"],
+      "published_at": "2026-06-12T10:00:00-07:00",
+      "variant_count": 6,
+      "price_min": "88.00",
+      "price_max": "118.00"
+    }
+  ]
+}

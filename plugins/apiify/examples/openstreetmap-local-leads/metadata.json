@@ -1,0 +1,52 @@
+{
+  "name": "openstreetmap-local-leads",
+  "source": "https://nominatim.org/release-docs/latest/api/Search/",
+  "approach": "public-geocoding-search-api",
+  "runtime_tier": 1,
+  "description": "Search OpenStreetMap place data and normalize local-business rows for lightweight prospecting.",
+  "business_value": "No-key local lead discovery for agencies, service providers, and field sales.",
+  "inputs": [
+    {
+      "name": "query",
+      "required": true,
+      "type": "string",
+      "note": "Business category plus location, such as 'dentist Austin Texas'."
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 10
+    }
+  ],
+  "outputs": [
+    "name",
+    "display_name",
+    "category",
+    "type",
+    "latitude",
+    "longitude",
+    "address",
+    "osm_type",
+    "osm_id",
+    "lead_source_url"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Use a descriptive user agent and follow public Nominatim usage policy."
+  },
+  "endpoints": [
+    "GET https://nominatim.openstreetmap.org/search"
+  ],
+  "pagination": {
+    "type": "bounded-limit",
+    "fields": ["limit"]
+  },
+  "verification_command": "python3 apiified/openstreetmap-local-leads/script.py --query 'dentist Austin Texas' --limit 10 --output local-leads.json",
+  "verification_result": "Live smoke checked Nominatim search for 'dentist Austin Texas' and received place rows without an API key.",
+  "known_risks": [
+    "Public Nominatim has strict light-use limits.",
+    "Rows can lack websites or phone numbers.",
+    "Data quality depends on OpenStreetMap community coverage."
+  ]
+}

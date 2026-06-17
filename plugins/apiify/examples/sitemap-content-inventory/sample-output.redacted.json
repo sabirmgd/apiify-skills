@@ -1,0 +1,29 @@
+{
+  "source": "public-sitemap-xml",
+  "sitemap_url": "https://www.shopify.com/sitemap.xml",
+  "count": 2,
+  "items": [
+    {
+      "sitemap_url": "https://www.shopify.com/sitemap.xml",
+      "url": "https://www.shopify.com/pricing",
+      "last_modified": "2026-06-01",
+      "change_frequency": null,
+      "priority": null,
+      "path": "/pricing",
+      "section": "pricing",
+      "inferred_page_type": "pricing-page",
+      "monitor_reason": "pricing-change-watch"
+    },
+    {
+      "sitemap_url": "https://www.shopify.com/sitemap.xml",
+      "url": "https://www.shopify.com/blog/example-redacted",
+      "last_modified": "2026-06-10",
+      "change_frequency": null,
+      "priority": null,
+      "path": "/blog/example-redacted",
+      "section": "blog",
+      "inferred_page_type": "content",
+      "monitor_reason": "content-intelligence"
+    }
+  ]
+}

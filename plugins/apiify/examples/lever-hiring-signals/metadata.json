@@ -1,0 +1,57 @@
+{
+  "name": "lever-hiring-signals",
+  "source": "https://github.com/lever/postings-api",
+  "approach": "public-job-board-api",
+  "runtime_tier": 1,
+  "description": "Read public Lever postings and convert open roles into sales, recruiting, or account-growth signals.",
+  "business_value": "No-key hiring intent and growth-trigger monitoring.",
+  "inputs": [
+    {
+      "name": "site",
+      "required": true,
+      "type": "string",
+      "note": "Lever company site token, such as 'anchorage'."
+    },
+    {
+      "name": "team",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 20
+    }
+  ],
+  "outputs": [
+    "company_site",
+    "job_id",
+    "title",
+    "team",
+    "department",
+    "location",
+    "commitment",
+    "hosted_url",
+    "apply_url",
+    "signal_tags"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Uses Lever's public postings API only."
+  },
+  "endpoints": [
+    "GET https://api.lever.co/v0/postings/{site}"
+  ],
+  "pagination": {
+    "type": "offset",
+    "fields": ["skip", "limit"]
+  },
+  "verification_command": "python3 apiified/lever-hiring-signals/script.py --site anchorage --team Product --limit 10 --output lever-jobs.json",
+  "verification_result": "Live smoke checked Lever public postings for 'anchorage' and received job rows without an API key.",
+  "known_risks": [
+    "Only public postings are available.",
+    "Company site tokens can change.",
+    "Filtering fields vary by employer data quality."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "source": "wordpress-rest-posts",
+  "site_url": "https://wordpress.org/news",
+  "count": 2,
+  "items": [
+    {
+      "site_url": "https://wordpress.org/news",
+      "post_id": 20793,
+      "title": "What Happened at WordCamp Europe 2026",
+      "url": "https://wordpress.org/news/2026/06/wceu-2026-recap/",
+      "published_at": "2026-06-06T17:44:14",
+      "modified_at": "2026-06-06T17:44:14",
+      "author": "redacted-author-id",
+      "excerpt": "WordCamp Europe 2026 brought the WordPress community together...",
+      "categories": ["community"],
+      "tags": ["wordpress", "event"],
+      "monitor_reason": "ecosystem-news"
+    },
+    {
+      "site_url": "https://wordpress.org/news",
+      "post_id": 20783,
+      "title": "Protect The Shire",
+      "url": "https://wordpress.org/news/2026/06/pts/",
+      "published_at": "2026-06-05T18:51:15",
+      "modified_at": "2026-06-05T18:51:15",
+      "author": "redacted-author-id",
+      "excerpt": "Temporary cooldown period for plugin/theme releases before auto-updates...",
+      "categories": ["security"],
+      "tags": ["security", "plugins"],
+      "monitor_reason": "security-market-signal"
+    }
+  ]
+}

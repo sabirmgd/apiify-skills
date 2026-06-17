@@ -1,0 +1,59 @@
+{
+  "name": "sec-company-facts",
+  "source": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+  "approach": "public-documented-sec-data-api",
+  "runtime_tier": 1,
+  "description": "Normalize SEC company facts into financial metric rows by CIK, taxonomy, concept, fiscal period, filing, and value.",
+  "business_value": "No-key public-company account research and market monitoring.",
+  "inputs": [
+    {
+      "name": "cik",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "concept",
+      "required": true,
+      "type": "string",
+      "default": "us-gaap:Revenues"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 20
+    }
+  ],
+  "outputs": [
+    "cik",
+    "entity_name",
+    "taxonomy",
+    "concept",
+    "label",
+    "unit",
+    "fiscal_year",
+    "fiscal_period",
+    "form",
+    "filed_at",
+    "end_date",
+    "value"
+  ],
+  "auth": {
+    "type": "descriptive_user_agent",
+    "env": "SEC_USER_AGENT",
+    "note": "No API key is required; SEC expects a descriptive user agent and fair-access behavior."
+  },
+  "endpoints": [
+    "GET https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json"
+  ],
+  "pagination": {
+    "type": "none"
+  },
+  "verification_command": "python3 apiified/sec-company-facts/script.py --cik 0000320193 --concept 'us-gaap:Revenues' --limit 10 --output sec-facts.json",
+  "verification_result": "Live smoke checked SEC companyfacts for CIK0000320193 and received public facts without an API key.",
+  "known_risks": [
+    "SEC fair-access rules apply.",
+    "Concept availability varies by filer.",
+    "Ticker-to-CIK lookup should be added if users prefer ticker input."
+  ]
+}

@@ -13,6 +13,8 @@ from metadata_schema import validate as validate_metadata
 
 ROW_KEYS = ("items", "results", "data", "posts", "rows")
 REQUIRED_FILES = ("README.md", "metadata.json", "sample-output.redacted.json")
+DISALLOWED_AUTH_TYPES = {"api_key", "bearer_token", "oauth", "optional_api_key", "optional_env_token"}
+DISALLOWED_ENV_PARTS = ("API_KEY", "ACCESS_TOKEN", "BEARER", "CLIENT_SECRET", "REFRESH_TOKEN")
 
 
 def default_examples_dir() -> Path:
@@ -71,6 +73,15 @@ def validate_example(example_dir: Path) -> list[str]:
                 errors.append(f"{slug}: outputs must be non-empty strings")
     else:
         errors.append(f"{slug}: outputs must be a list")
+
+    auth = metadata.get("auth")
+    if isinstance(auth, dict):
+        auth_type = str(auth.get("type", "")).lower()
+        if auth_type in DISALLOWED_AUTH_TYPES:
+            errors.append(f"{slug}: examples must not require API keys, bearer tokens, or OAuth")
+        env = str(auth.get("env", ""))
+        if any(part in env.upper() for part in DISALLOWED_ENV_PARTS):
+            errors.append(f"{slug}: examples must not require credential env vars")
 
     try:
         sample = load_json(sample_path)
