@@ -42,13 +42,13 @@ Apiify is useful when a person can get the data or complete the workflow in a br
 
 Common examples:
 
-- **Turn search pages into datasets:** collect listings, posts, products, jobs, creators, grants, vendors, or public records into JSON/CSV.
-- **Give agents tools for logged-in portals:** convert repeatable CRM, analytics, marketplace, admin, or dashboard workflows into scripts agents can call.
-- **Make social/research workflows reusable:** pull public/trending posts, author metadata, engagement metrics, or media links from sites that are easier to inspect in-browser than through official APIs.
-- **Prototype integrations before official API access:** reverse engineer enough of the browser flow to validate a product idea, internal workflow, or automation before investing in a full integration.
-- **Help non-technical users get API-like access:** produce a readable script and CSV output instead of expecting them to understand auth headers, pagination, cookies, GraphQL, or browser devtools.
+- **Lead generation:** build local business lists, domain contact lists, startup launch lists, contract opportunity feeds, or technographic account lists.
+- **Sales triggers:** watch hiring boards, product launches, government opportunities, new funding/news mentions, and buyer-intent posts.
+- **Marketing intelligence:** monitor competitor ads, brand mentions, campaign angles, social pain points, and market narratives.
+- **News and market monitoring:** turn business news APIs, public feeds, and topic searches into structured alert rows.
+- **Logged-in sales/admin portals:** convert repeatable CRM, analytics, marketplace, or dashboard workflows into scripts agents can call.
+- **Prototype integrations before official API access:** reverse engineer enough of the browser flow to validate a product idea or automation before building a full integration.
 - **Reduce agent runtime cost:** replace repeated browser navigation with a cheap deterministic HTTP call or script execution.
-- **Create agent-native tools:** once a workflow is apiified, Claude Code, Codex, or another agent can call it as part of a bigger plan.
 
 Example prompts:
 
@@ -63,6 +63,21 @@ Use $apiify:apiify to convert this logged-in analytics dashboard export into a r
 ```text
 /apiify:apiify find the API behind this product search page and generate a script that accepts --query and --limit.
 ```
+
+Business-focused example catalog:
+
+| Example | Business job | Typical source |
+| --- | --- | --- |
+| `google-places-local-leads` | Local business prospect lists | Google Places API |
+| `hunter-domain-contacts` | Domain-to-contact enrichment | Hunter Domain Search |
+| `builtwith-technographic-leads` | Tech-stack based account scoring | BuiltWith Domain API |
+| `product-hunt-launch-leads` | Fresh startup and partnership leads | Product Hunt GraphQL |
+| `greenhouse-hiring-signals` | Hiring intent and growth triggers | Greenhouse Job Board API |
+| `sam-gov-contract-opportunities` | B2G contract pipeline discovery | SAM.gov opportunities |
+| `meta-ad-library-monitor` | Competitor ad creative monitoring | Meta Ad Library API |
+| `reddit-buyer-intent-monitor` | Buyer pain and recommendation requests | Reddit API |
+| `newsapi-competitor-mentions` | Competitor and market news alerts | NewsAPI |
+| `gdelt-market-news-monitor` | Global market/news intelligence | GDELT DOC API |
 
 See `plugins/apiify/examples/yc-company-leads/` for a real directory-to-lead-list example. It turns YC's public company directory into a JSON/CSV extractor by discovering the underlying Algolia search API, with optional public profile enrichment for founder/social fields.
 

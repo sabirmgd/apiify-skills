@@ -1,0 +1,57 @@
+{
+  "name": "greenhouse-hiring-signals",
+  "source": "https://developers.greenhouse.io/job-board.html",
+  "approach": "public-documented-job-board-api",
+  "runtime_tier": 1,
+  "description": "Read public Greenhouse job boards and convert open roles into hiring-intent account signals.",
+  "business_value": "Sales trigger detection, recruiting target discovery, and account growth monitoring.",
+  "inputs": [
+    {
+      "name": "board_token",
+      "required": true,
+      "type": "string",
+      "note": "Greenhouse board token, often visible in careers URLs."
+    },
+    {
+      "name": "department",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 50
+    }
+  ],
+  "outputs": [
+    "company",
+    "board_token",
+    "job_id",
+    "title",
+    "department",
+    "location",
+    "absolute_url",
+    "updated_at",
+    "content_summary",
+    "signal_tags"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Public Job Board API data does not require auth."
+  },
+  "endpoints": [
+    "GET https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs"
+  ],
+  "pagination": {
+    "type": "none",
+    "note": "The public board returns current published jobs."
+  },
+  "verification_command": "python3 apiified/greenhouse-hiring-signals/script.py --board-token example-company --department Engineering --limit 10 --output jobs.json",
+  "verification_result": "Example fixture validates hiring signal rows with department, location, and trigger tags.",
+  "known_risks": [
+    "Only companies using public Greenhouse boards are covered.",
+    "Board token discovery may require one browser lookup.",
+    "Job descriptions should be summarized before importing into CRM notes."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "google-places-local-leads",
+  "source": "https://developers.google.com/maps/documentation/places/web-service/text-search",
+  "approach": "public-documented-rest-api",
+  "runtime_tier": 1,
+  "description": "Find local businesses by search query and geography, then enrich each place into a CRM-ready prospect row.",
+  "business_value": "Local lead generation for agencies, field sales, recruiting, and service providers.",
+  "inputs": [
+    {
+      "name": "query",
+      "required": true,
+      "type": "string",
+      "note": "Business category plus geography, such as 'dental clinics in Austin'."
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 25
+    },
+    {
+      "name": "fields",
+      "required": false,
+      "type": "string",
+      "default": "displayName,formattedAddress,websiteUri,nationalPhoneNumber,rating,userRatingCount,location,businessStatus,types"
+    }
+  ],
+  "outputs": [
+    "name",
+    "place_id",
+    "website",
+    "phone",
+    "address",
+    "rating",
+    "review_count",
+    "business_status",
+    "latitude",
+    "longitude",
+    "types"
+  ],
+  "auth": {
+    "type": "api_key",
+    "env": "GOOGLE_MAPS_API_KEY",
+    "note": "Use field masks to control Places API cost."
+  },
+  "endpoints": [
+    "POST https://places.googleapis.com/v1/places:searchText",
+    "GET https://places.googleapis.com/v1/places/{place_id}"
+  ],
+  "pagination": {
+    "type": "page-token",
+    "fields": ["nextPageToken"]
+  },
+  "verification_command": "python3 apiified/google-places-local-leads/script.py --query 'dental clinics in Austin' --limit 10 --output local-leads.json",
+  "verification_result": "Example fixture validates local-business lead rows with contact, rating, and location fields.",
+  "known_risks": [
+    "Requires a Google Maps Platform API key and billable Places requests.",
+    "Some businesses lack websites or phone numbers.",
+    "Field masks must be kept narrow to avoid unnecessary cost."
+  ]
+}

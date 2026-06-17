@@ -1,0 +1,31 @@
+{
+  "source": "greenhouse/job-board",
+  "board_token": "example-company",
+  "count": 2,
+  "items": [
+    {
+      "company": "Example Company",
+      "board_token": "example-company",
+      "job_id": 1234567,
+      "title": "Senior RevOps Engineer",
+      "department": "Revenue Operations",
+      "location": "New York, NY",
+      "absolute_url": "https://boards.greenhouse.io/example-company/jobs/1234567",
+      "updated_at": "2026-06-14T10:15:00Z",
+      "content_summary": "Hiring for CRM automation, integrations, and sales process tooling.",
+      "signal_tags": ["revops", "crm", "automation", "sales-stack"]
+    },
+    {
+      "company": "Example Company",
+      "board_token": "example-company",
+      "job_id": 1234568,
+      "title": "Demand Generation Manager",
+      "department": "Marketing",
+      "location": "Remote",
+      "absolute_url": "https://boards.greenhouse.io/example-company/jobs/1234568",
+      "updated_at": "2026-06-13T09:00:00Z",
+      "content_summary": "Role owns paid acquisition, lifecycle campaigns, and pipeline analytics.",
+      "signal_tags": ["demand-gen", "paid-acquisition", "pipeline"]
+    }
+  ]
+}

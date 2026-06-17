@@ -1,0 +1,31 @@
+{
+  "source": "producthunt/graphql",
+  "topic": "ai",
+  "count": 2,
+  "items": [
+    {
+      "product_name": "Example AI Ops",
+      "tagline": "AI agents for customer operations teams",
+      "product_url": "https://www.producthunt.com/posts/example-ai-ops",
+      "website": "https://example-ai-ops.invalid",
+      "votes_count": 482,
+      "comments_count": 64,
+      "launch_date": "2026-06-12",
+      "topics": ["Artificial Intelligence", "SaaS", "Customer Support"],
+      "maker_names": ["Alex Founder", "Sam Builder"],
+      "maker_profiles": ["https://www.producthunt.com/@redacted1", "https://www.producthunt.com/@redacted2"]
+    },
+    {
+      "product_name": "LaunchRank",
+      "tagline": "Competitive launch intelligence for marketers",
+      "product_url": "https://www.producthunt.com/posts/launchrank",
+      "website": "https://launchrank.invalid",
+      "votes_count": 221,
+      "comments_count": 18,
+      "launch_date": "2026-06-10",
+      "topics": ["Marketing", "Analytics"],
+      "maker_names": ["Jamie Maker"],
+      "maker_profiles": ["https://www.producthunt.com/@redacted3"]
+    }
+  ]
+}

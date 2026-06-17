@@ -1,0 +1,60 @@
+{
+  "name": "reddit-buyer-intent-monitor",
+  "source": "https://www.reddit.com/dev/api/",
+  "approach": "official-oauth-api-search",
+  "runtime_tier": 1,
+  "description": "Search Reddit posts for recommendation requests, vendor comparisons, complaints, and pain points that can become sales or content signals.",
+  "business_value": "Buyer-intent monitoring, VOC research, and content idea discovery.",
+  "inputs": [
+    {
+      "name": "subreddit",
+      "required": false,
+      "type": "string",
+      "note": "Optional subreddit scope."
+    },
+    {
+      "name": "query",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 25
+    }
+  ],
+  "outputs": [
+    "post_id",
+    "subreddit",
+    "title",
+    "post_url",
+    "author",
+    "score",
+    "num_comments",
+    "created_at",
+    "intent_label",
+    "matched_keywords",
+    "excerpt"
+  ],
+  "auth": {
+    "type": "oauth",
+    "env": "REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_REFRESH_TOKEN",
+    "note": "Use a descriptive user agent and minimize personal data in exports."
+  },
+  "endpoints": [
+    "GET https://oauth.reddit.com/search",
+    "GET https://oauth.reddit.com/r/{subreddit}/search"
+  ],
+  "pagination": {
+    "type": "listing-after",
+    "fields": ["after", "limit"]
+  },
+  "verification_command": "python3 apiified/reddit-buyer-intent-monitor/script.py --subreddit salesops --query 'recommend CRM automation' --limit 10 --output reddit-intent.json",
+  "verification_result": "Example fixture validates buyer-intent rows with matched keywords and redacted post excerpts.",
+  "known_risks": [
+    "Requires Reddit API access and compliance with platform terms.",
+    "Usernames and excerpts may be personal data and should be minimized or redacted before sharing.",
+    "Intent labels are heuristic and should be reviewed before outreach."
+  ]
+}

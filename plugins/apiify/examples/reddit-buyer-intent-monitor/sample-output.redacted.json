@@ -1,0 +1,33 @@
+{
+  "source": "reddit/oauth-search",
+  "query": "recommend CRM automation",
+  "count": 2,
+  "items": [
+    {
+      "post_id": "redacted_post_1",
+      "subreddit": "salesops",
+      "title": "Looking for a CRM automation tool that does not require weeks of setup",
+      "post_url": "https://www.reddit.com/r/salesops/comments/redacted_post_1/",
+      "author": "u/redacted_user_1",
+      "score": 42,
+      "num_comments": 19,
+      "created_at": "2026-06-13T18:30:00Z",
+      "intent_label": "tool_recommendation",
+      "matched_keywords": ["recommend", "CRM automation", "setup"],
+      "excerpt": "We are a small team and need something lighter than our current workflow..."
+    },
+    {
+      "post_id": "redacted_post_2",
+      "subreddit": "crm",
+      "title": "Has anyone replaced manual Salesforce updates with AI?",
+      "post_url": "https://www.reddit.com/r/crm/comments/redacted_post_2/",
+      "author": "u/redacted_user_2",
+      "score": 27,
+      "num_comments": 11,
+      "created_at": "2026-06-12T11:05:00Z",
+      "intent_label": "vendor_comparison",
+      "matched_keywords": ["replaced", "manual", "Salesforce", "AI"],
+      "excerpt": "Trying to compare tools before we commit budget this quarter..."
+    }
+  ]
+}

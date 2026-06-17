@@ -1,0 +1,33 @@
+{
+  "source": "google-places",
+  "query": "dental clinics in Austin",
+  "count": 2,
+  "items": [
+    {
+      "name": "Example Dental Studio",
+      "place_id": "places/REDACTED_PLACE_ID_1",
+      "website": "https://example-dental.invalid",
+      "phone": "+1-512-555-0101",
+      "address": "100 Example Ave, Austin, TX 78701",
+      "rating": 4.7,
+      "review_count": 184,
+      "business_status": "OPERATIONAL",
+      "latitude": 30.2672,
+      "longitude": -97.7431,
+      "types": ["dentist", "health", "point_of_interest"]
+    },
+    {
+      "name": "Sample Family Dentistry",
+      "place_id": "places/REDACTED_PLACE_ID_2",
+      "website": null,
+      "phone": "+1-512-555-0102",
+      "address": "200 Sample Rd, Austin, TX 78702",
+      "rating": 4.4,
+      "review_count": 91,
+      "business_status": "OPERATIONAL",
+      "latitude": 30.265,
+      "longitude": -97.739,
+      "types": ["dentist", "establishment"]
+    }
+  ]
+}

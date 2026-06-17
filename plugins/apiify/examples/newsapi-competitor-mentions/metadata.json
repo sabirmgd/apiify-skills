@@ -1,0 +1,62 @@
+{
+  "name": "newsapi-competitor-mentions",
+  "source": "https://newsapi.org/docs/endpoints/everything",
+  "approach": "public-documented-rest-api",
+  "runtime_tier": 1,
+  "description": "Search news and blog articles for brand, competitor, customer, or market mentions and normalize them into monitoring rows.",
+  "business_value": "Competitive intelligence, market monitoring, PR alerts, and account trigger discovery.",
+  "inputs": [
+    {
+      "name": "query",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "from_date",
+      "required": false,
+      "type": "date"
+    },
+    {
+      "name": "sort_by",
+      "required": false,
+      "type": "enum",
+      "default": "publishedAt",
+      "note": "publishedAt, relevancy, or popularity."
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 50
+    }
+  ],
+  "outputs": [
+    "title",
+    "source",
+    "author",
+    "url",
+    "published_at",
+    "description",
+    "content_excerpt",
+    "matched_query",
+    "sentiment_hint"
+  ],
+  "auth": {
+    "type": "api_key",
+    "env": "NEWSAPI_KEY"
+  },
+  "endpoints": [
+    "GET https://newsapi.org/v2/everything"
+  ],
+  "pagination": {
+    "type": "page",
+    "fields": ["page", "pageSize", "totalResults"]
+  },
+  "verification_command": "python3 apiified/newsapi-competitor-mentions/script.py --query '\"Acme CRM\" OR \"Acme AI\"' --from-date 2026-06-01 --sort-by publishedAt --limit 10 --output news-mentions.json",
+  "verification_result": "Example fixture validates competitor/news mention rows with source, URL, publish time, and excerpt fields.",
+  "known_risks": [
+    "Requires NewsAPI key and plan limits determine coverage.",
+    "Full article text usually requires publisher access.",
+    "Sentiment hints are heuristic unless backed by a separate model or ruleset."
+  ]
+}

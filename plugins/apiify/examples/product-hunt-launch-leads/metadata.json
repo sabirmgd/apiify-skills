@@ -1,0 +1,57 @@
+{
+  "name": "product-hunt-launch-leads",
+  "source": "https://api.producthunt.com/v2/docs",
+  "approach": "public-documented-graphql-api",
+  "runtime_tier": 1,
+  "description": "Search recent Product Hunt launches by topic or keyword and return product, traction, website, and maker fields.",
+  "business_value": "Fresh startup lead discovery, partnership sourcing, PR monitoring, and competitor watch.",
+  "inputs": [
+    {
+      "name": "topic",
+      "required": false,
+      "type": "string",
+      "note": "Topic or keyword used to filter launches."
+    },
+    {
+      "name": "posted_after",
+      "required": false,
+      "type": "date"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 25
+    }
+  ],
+  "outputs": [
+    "product_name",
+    "tagline",
+    "product_url",
+    "website",
+    "votes_count",
+    "comments_count",
+    "launch_date",
+    "topics",
+    "maker_names",
+    "maker_profiles"
+  ],
+  "auth": {
+    "type": "bearer_token",
+    "env": "PRODUCT_HUNT_TOKEN"
+  },
+  "endpoints": [
+    "POST https://api.producthunt.com/v2/api/graphql"
+  ],
+  "pagination": {
+    "type": "graphql-cursor",
+    "fields": ["first", "after", "pageInfo.endCursor", "pageInfo.hasNextPage"]
+  },
+  "verification_command": "python3 apiified/product-hunt-launch-leads/script.py --topic ai --posted-after 2026-06-01 --limit 10 --output launches.json",
+  "verification_result": "Example fixture validates launch lead rows with product traction and maker fields.",
+  "known_risks": [
+    "Requires Product Hunt API token.",
+    "GraphQL complexity and request rate limits apply.",
+    "Maker and website fields may be incomplete."
+  ]
+}

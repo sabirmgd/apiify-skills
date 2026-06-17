@@ -1,0 +1,62 @@
+{
+  "name": "sam-gov-contract-opportunities",
+  "source": "https://open.gsa.gov/api/get-opportunities-public-api/",
+  "approach": "public-documented-rest-api",
+  "runtime_tier": 1,
+  "description": "Search SAM.gov contract opportunities and normalize active notices into B2G sales lead rows.",
+  "business_value": "Government sales pipeline discovery and bid/no-bid triage.",
+  "inputs": [
+    {
+      "name": "keyword",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "posted_from",
+      "required": true,
+      "type": "date",
+      "note": "SAM.gov date format, for example 06/01/2026."
+    },
+    {
+      "name": "posted_to",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 25
+    }
+  ],
+  "outputs": [
+    "notice_id",
+    "title",
+    "solicitation_number",
+    "agency",
+    "office",
+    "naics_code",
+    "set_aside",
+    "response_deadline",
+    "posted_date",
+    "opportunity_url"
+  ],
+  "auth": {
+    "type": "api_key",
+    "env": "SAM_GOV_API_KEY"
+  },
+  "endpoints": [
+    "GET https://api.sam.gov/opportunities/v2/search"
+  ],
+  "pagination": {
+    "type": "offset",
+    "fields": ["limit", "offset", "totalRecords"]
+  },
+  "verification_command": "python3 apiified/sam-gov-contract-opportunities/script.py --keyword cybersecurity --posted-from 06/01/2026 --posted-to 06/17/2026 --limit 10 --output opportunities.json",
+  "verification_result": "Example fixture validates contract opportunity rows with agency, NAICS, deadline, and opportunity URL fields.",
+  "known_risks": [
+    "Requires a SAM.gov API key for practical usage.",
+    "Date formats and filter names must match SAM.gov expectations.",
+    "Opportunity details can change after publication."
+  ]
+}
