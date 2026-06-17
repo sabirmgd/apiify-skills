@@ -1,0 +1,27 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile helper scripts
+        run: python -m py_compile plugins/apiify/skills/apiify/scripts/*.py
+      - name: Validate example metadata
+        run: python plugins/apiify/skills/apiify/scripts/metadata_schema.py plugins/apiify/examples/instagram-viral-posts/metadata.json
+      - name: Verify CSV export
+        run: python plugins/apiify/skills/apiify/scripts/export_csv.py tests/sample-output.json --output /tmp/apiify-sample.csv
+      - name: Validate JSON manifests
+        run: |
+          python -m json.tool .claude-plugin/marketplace.json >/dev/null
+          python -m json.tool .agents/plugins/marketplace.json >/dev/null
+          python -m json.tool plugins/apiify/.claude-plugin/plugin.json >/dev/null
+          python -m json.tool plugins/apiify/.codex-plugin/plugin.json >/dev/null
+

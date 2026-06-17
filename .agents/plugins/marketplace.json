@@ -1,0 +1,21 @@
+{
+  "name": "apiify",
+  "interface": {
+    "displayName": "Apiify"
+  },
+  "plugins": [
+    {
+      "name": "apiify",
+      "source": {
+        "source": "local",
+        "path": "./plugins/apiify"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
+

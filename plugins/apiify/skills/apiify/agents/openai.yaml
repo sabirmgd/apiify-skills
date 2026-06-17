@@ -1,0 +1,8 @@
+interface:
+  display_name: Apiify
+  short_description: Convert websites into deterministic API scripts.
+  brand_color: "#0F766E"
+  default_prompt: "Use $apiify to discover a website workflow, generate a deterministic API script, verify it, and export JSON/CSV."
+policy:
+  allow_implicit_invocation: true
+

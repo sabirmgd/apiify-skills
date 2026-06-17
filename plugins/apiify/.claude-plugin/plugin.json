@@ -1,0 +1,13 @@
+{
+  "name": "apiify",
+  "version": "0.1.0",
+  "description": "Turn websites and browser workflows into deterministic API scripts with JSON and CSV outputs.",
+  "author": {
+    "name": "30x"
+  },
+  "homepage": "https://github.com/sabirmgd/apiify-skills",
+  "repository": "https://github.com/sabirmgd/apiify-skills",
+  "license": "MIT",
+  "keywords": ["api", "browser", "automation", "scraping", "agents"],
+  "skills": "./skills/"
+}

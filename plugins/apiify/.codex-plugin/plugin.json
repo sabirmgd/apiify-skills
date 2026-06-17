@@ -1,0 +1,28 @@
+{
+  "name": "apiify",
+  "version": "0.1.0",
+  "description": "Turn websites and browser workflows into deterministic API scripts with JSON and CSV outputs.",
+  "author": {
+    "name": "30x",
+    "url": "https://github.com/sabirmgd/apiify-skills"
+  },
+  "homepage": "https://github.com/sabirmgd/apiify-skills",
+  "repository": "https://github.com/sabirmgd/apiify-skills",
+  "license": "MIT",
+  "keywords": ["api", "browser", "automation", "scraping", "agents"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Apiify",
+    "shortDescription": "Convert websites into deterministic API scripts.",
+    "longDescription": "Apiify guides agents through public/private API discovery, browser-assisted capture, deterministic script generation, verification, and JSON/CSV export.",
+    "developerName": "30x",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/sabirmgd/apiify-skills",
+    "defaultPrompt": [
+      "Use Apiify to turn this website workflow into a script and CSV output.",
+      "Use Apiify to discover whether this site has a replayable API before using browser automation."
+    ],
+    "brandColor": "#0F766E"
+  }
+}

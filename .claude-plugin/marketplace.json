@@ -1,0 +1,24 @@
+{
+  "name": "apiify",
+  "owner": {
+    "name": "30x"
+  },
+  "description": "Skills for turning websites into deterministic API scripts and outputs.",
+  "plugins": [
+    {
+      "name": "apiify",
+      "source": "./plugins/apiify",
+      "displayName": "Apiify",
+      "description": "Turn browser workflows and websites into deterministic API scripts with JSON/CSV outputs.",
+      "version": "0.1.0",
+      "author": {
+        "name": "30x"
+      },
+      "homepage": "https://github.com/sabirmgd/apiify-skills",
+      "repository": "https://github.com/sabirmgd/apiify-skills",
+      "license": "MIT",
+      "category": "Automation",
+      "tags": ["api", "browser", "automation", "scraping", "agents"]
+    }
+  ]
+}

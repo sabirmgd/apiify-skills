@@ -1,0 +1,40 @@
+{
+  "keyword": "ai agents",
+  "hashtag": "aiagents",
+  "count": 2,
+  "items": [
+    {
+      "post_url": "https://www.instagram.com/p/REDACTED1/",
+      "shortcode": "REDACTED1",
+      "caption": "Example caption redacted.",
+      "likes": 60494,
+      "comments": 812,
+      "posted_date": "2026-06-16T00:00:00Z",
+      "media_type": "video",
+      "media_url": "https://cdn.example.invalid/redacted-video.mp4",
+      "thumbnail": "https://cdn.example.invalid/redacted-thumb.jpg",
+      "username": "example_author",
+      "full_name": "Example Author",
+      "verified": false,
+      "view_count": 1290000,
+      "engagement": 61306
+    },
+    {
+      "post_url": "https://www.instagram.com/p/REDACTED2/",
+      "shortcode": "REDACTED2",
+      "caption": "Second example caption redacted.",
+      "likes": 2500,
+      "comments": 40,
+      "posted_date": "2026-06-15T00:00:00Z",
+      "media_type": "image",
+      "media_url": "https://cdn.example.invalid/redacted-image.jpg",
+      "thumbnail": "https://cdn.example.invalid/redacted-thumb-2.jpg",
+      "username": "another_author",
+      "full_name": "Another Author",
+      "verified": true,
+      "view_count": null,
+      "engagement": 2540
+    }
+  ]
+}
+

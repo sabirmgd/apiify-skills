@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "name": "one",
+      "metrics": {
+        "likes": 10,
+        "comments": 2
+      },
+      "tags": ["a", "b"]
+    },
+    {
+      "name": "two",
+      "metrics": {
+        "likes": 3,
+        "comments": 1
+      },
+      "tags": []
+    }
+  ]
+}
+

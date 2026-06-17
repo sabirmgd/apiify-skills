@@ -1,0 +1,55 @@
+{
+  "name": "instagram-viral-posts",
+  "source": "https://www.instagram.com",
+  "approach": "browser-login-then-http",
+  "runtime_tier": 3,
+  "description": "Resolve a keyword to a hashtag, pull hashtag media from Instagram web endpoints, and return posts ranked by engagement.",
+  "inputs": [
+    {
+      "name": "keyword",
+      "required": true,
+      "type": "string",
+      "note": "Search term resolved to a hashtag."
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 25
+    }
+  ],
+  "outputs": [
+    "post_url",
+    "shortcode",
+    "caption",
+    "likes",
+    "comments",
+    "posted_date",
+    "media_type",
+    "media_url",
+    "thumbnail",
+    "username",
+    "full_name",
+    "verified",
+    "view_count",
+    "engagement"
+  ],
+  "auth": {
+    "type": "browser_login_once",
+    "state": "local browser/session cookie file",
+    "secrets": "redacted"
+  },
+  "pagination": {
+    "type": "bounded",
+    "note": "Hashtag endpoint returns a bounded top/recent set; related hashtags can extend coverage."
+  },
+  "verification_command": "python3 apiified/instagram-viral-posts/script.py --keyword 'ai agents' --limit 10 --output output.json",
+  "verification_result": "10 posts returned and ranked by likes + comments; CSV export validated from output.json.",
+  "known_risks": [
+    "Instagram private web endpoints are undocumented and may change.",
+    "Login may trigger checkpoints or rate limits.",
+    "Keyword search is approximated through hashtag resolution.",
+    "Follower enrichment requires extra per-author requests and should be opt-in."
+  ]
+}
+
