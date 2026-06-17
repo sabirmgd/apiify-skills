@@ -1,0 +1,73 @@
+{
+  "name": "yc-company-leads",
+  "source": "https://www.ycombinator.com/companies",
+  "approach": "public-client-search-api",
+  "runtime_tier": 2,
+  "description": "Search YC's public company directory through the same Algolia index used by the website, then optionally enrich each company from its public YC profile page.",
+  "inputs": [
+    {
+      "name": "query",
+      "required": false,
+      "type": "string",
+      "default": "",
+      "note": "Search query such as 'ai agents', 'healthcare', or 'property management'."
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 25
+    },
+    {
+      "name": "enrich",
+      "required": false,
+      "type": "boolean",
+      "default": false,
+      "note": "Fetch individual public company pages for founders and social links."
+    }
+  ],
+  "outputs": [
+    "name",
+    "website",
+    "yc_url",
+    "one_liner",
+    "long_description",
+    "batch",
+    "industry",
+    "subindustry",
+    "industries",
+    "regions",
+    "all_locations",
+    "team_size",
+    "is_hiring",
+    "top_company",
+    "tags",
+    "company_linkedin_url",
+    "company_twitter_url",
+    "company_github_url",
+    "year_founded",
+    "founders"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Uses public YC directory data and YC's public client-side Algolia search key."
+  },
+  "endpoints": [
+    "GET /companies to discover window.AlgoliaOpts",
+    "POST https://{app_id}-dsn.algolia.net/1/indexes/YCCompany_production/query",
+    "GET /companies/{slug} for optional enrichment"
+  ],
+  "pagination": {
+    "type": "page",
+    "fields": ["page", "hitsPerPage", "nbPages"]
+  },
+  "verified_at": "2026-06-17",
+  "verification_command": "python3 apiified/yc-company-leads/script.py --query 'ai agents' --limit 10 --enrich --output /tmp/yc-leads.json --csv-output /tmp/yc-leads.csv",
+  "verification_result": "Algolia returned 858 matching public company records for 'ai agents'; verified 10 JSON rows and 10 CSV rows with optional enrichment.",
+  "known_risks": [
+    "YC's public client-side Algolia key or index names may change.",
+    "Enrichment fetches one public company profile page per result; keep limits reasonable.",
+    "This artifact intentionally does not scrape private emails or phone numbers."
+  ]
+}
+

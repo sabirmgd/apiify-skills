@@ -64,6 +64,8 @@ Use $apiify:apiify to convert this logged-in analytics dashboard export into a r
 /apiify:apiify find the API behind this product search page and generate a script that accepts --query and --limit.
 ```
 
+See `plugins/apiify/examples/yc-company-leads/` for a real directory-to-lead-list example. It turns YC's public company directory into a JSON/CSV extractor by discovering the underlying Algolia search API, with optional public profile enrichment for founder/social fields.
+
 ## When Not To Use It
 
 Do not use Apiify to bypass access controls, paywalls, CAPTCHAs, account restrictions, or site rules. Prefer official APIs whenever they meet the need. For sensitive or high-volume use cases, review the target site's terms, rate limits, and privacy constraints first.

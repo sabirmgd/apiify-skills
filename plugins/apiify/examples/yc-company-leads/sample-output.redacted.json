@@ -1,0 +1,107 @@
+{
+  "source": "ycombinator.com/companies",
+  "query": "ai agents",
+  "count": 10,
+  "nbHits": 858,
+  "page_start": 0,
+  "sort": "relevance",
+  "enriched": true,
+  "items": [
+    {
+      "name": "Care GP",
+      "slug": "care-gp",
+      "yc_url": "https://www.ycombinator.com/companies/care-gp",
+      "website": "https://caregp.com.au/",
+      "one_liner": "AI agents to run primary healthcare operations",
+      "long_description": "Care GP is building AI agents to run operations for primary healthcare clinics",
+      "batch": "Summer 2026",
+      "status": "Active",
+      "industry": "Healthcare",
+      "subindustry": "Healthcare",
+      "industries": [
+        "Healthcare"
+      ],
+      "regions": [
+        "Australia",
+        "Oceania"
+      ],
+      "all_locations": "Sydney, NSW, Australia",
+      "team_size": 10,
+      "is_hiring": false,
+      "nonprofit": false,
+      "top_company": false,
+      "tags": [
+        "SaaS",
+        "Healthcare",
+        "AI"
+      ],
+      "objectID": "33021",
+      "profile_url": "https://www.ycombinator.com/companies/care-gp",
+      "company_linkedin_url": "https://www.linkedin.com/company/caregp",
+      "company_twitter_url": "",
+      "company_facebook_url": "https://www.facebook.com/profile.php?id=61576741965683",
+      "company_github_url": "https://github.com/orgs/Care-AI-Inc",
+      "year_founded": 2024,
+      "founders": [
+        {
+          "name": "Melvin Chen",
+          "title": "Founder",
+          "linkedin_url": "https://www.linkedin.com/in/melvinchen/",
+          "twitter_url": "https://x.com/mchenofficial",
+          "github_url": null,
+          "profile_url": null
+        }
+      ]
+    },
+    {
+      "name": "CentralComs",
+      "slug": "centralcoms",
+      "yc_url": "https://www.ycombinator.com/companies/centralcoms",
+      "website": "https://centralcoms.com",
+      "one_liner": "AI Agents for Property Management",
+      "long_description": "CentralComs is building AI Agents for property managers that tracks every maintenance call, chases every open ticket, and keep owners/tenants/vendors updated, so nothing falls through the cracks and operations never stall.\r\n\r\nThese agent work directly inside AppFolio, Buildium, Yardi and your existing stack, making real-time decisions and resolving multi-step workflows without handoffs.",
+      "batch": "Spring 2026",
+      "status": "Active",
+      "industry": "Real Estate and Construction",
+      "subindustry": "Real Estate and Construction -> Housing and Real Estate",
+      "industries": [
+        "Real Estate and Construction",
+        "Housing and Real Estate"
+      ],
+      "regions": [
+        "Unspecified"
+      ],
+      "all_locations": "",
+      "team_size": 2,
+      "is_hiring": false,
+      "nonprofit": false,
+      "top_company": false,
+      "tags": [],
+      "objectID": "31543",
+      "profile_url": "https://www.ycombinator.com/companies/centralcoms",
+      "company_linkedin_url": "https://www.linkedin.com/company/centralcoms",
+      "company_twitter_url": "",
+      "company_facebook_url": "https://www.facebook.com/people/CentralComs-AI-Property-Management-Services",
+      "company_github_url": null,
+      "year_founded": 2026,
+      "founders": [
+        {
+          "name": "Kyle Chang",
+          "title": "Founder",
+          "linkedin_url": "https://www.linkedin.com/in/kylegchang/",
+          "twitter_url": "",
+          "github_url": null,
+          "profile_url": null
+        },
+        {
+          "name": "Kevin Wong",
+          "title": "Founder",
+          "linkedin_url": "https://www.linkedin.com/in/kevinzwong/",
+          "twitter_url": "",
+          "github_url": null,
+          "profile_url": null
+        }
+      ]
+    }
+  ]
+}
