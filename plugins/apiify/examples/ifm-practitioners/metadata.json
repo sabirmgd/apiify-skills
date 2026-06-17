@@ -1,9 +1,9 @@
 {
   "name": "ifm-practitioners",
   "source": "https://www.ifm.org/find-a-practitioner",
-  "approach": "browser-dom",
-  "runtime_tier": 4,
-  "description": "Search IFM's public practitioner directory by location and extract listing-card contact fields, with optional full-detail enrichment through a persistent browser session.",
+  "approach": "public-html-direct-with-browser-fallback",
+  "runtime_tier": 2,
+  "description": "Search IFM's public practitioner directory by location and extract listing-card contact fields from server-rendered HTML, with optional full-detail enrichment and browser fallback for challenge cases.",
   "inputs": [
     {
       "name": "location",
@@ -34,6 +34,13 @@
       "required": false,
       "type": "boolean",
       "default": false
+    },
+    {
+      "name": "mode",
+      "required": false,
+      "type": "string",
+      "default": "auto",
+      "note": "auto tries direct HTTP first, then browser fallback. Use http or browser to force a runtime."
     },
     {
       "name": "lat",
@@ -67,6 +74,20 @@
       "env": "IFM_IGNORE_HTTPS_ERRORS",
       "default": false,
       "note": "Useful for SSL-inspection residential proxies when their CA is not installed in the browser profile."
+    },
+    {
+      "name": "http_retries",
+      "required": false,
+      "type": "int",
+      "default": 3,
+      "note": "Retries transient direct HTTP Cloudflare challenge/403 responses before failing or falling back in auto mode."
+    },
+    {
+      "name": "request_delay",
+      "required": false,
+      "type": "float",
+      "default": 0.5,
+      "note": "Sleep seconds between direct HTTP page/detail requests to reduce challenge risk during bulk runs."
     }
   ],
   "outputs": [
@@ -92,7 +113,7 @@
   ],
   "auth": {
     "type": "none",
-    "note": "Uses public IFM directory pages. A persistent browser session may need one headed Cloudflare verification before unattended reuse."
+    "note": "Uses public IFM directory pages through direct HTTP. Browser fallback may need one headed Cloudflare verification before unattended reuse."
   },
   "endpoints": [
     "GET /practitioner-listings/{lat_lon_radius}/{lat_lon_radius}/no-country/469?...",
@@ -104,13 +125,13 @@
     "page_size_observed": 10
   },
   "verified_at": "2026-06-18",
-  "verification_command": "python3 apiified/ifm-practitioners/script.py --location 'Austin, TX' --radius-km 40 --limit 3 --pages 1 --browser-session ifm-detail",
-  "verification_result": "Warmed browser listing run returned 3 records in 10.46s with 153 total available. Warmed detail run returned one enriched profile in 18.71s with top-level detail_url, 10 health concerns, and 7 coursework values. Fresh residential-proxy run handled TLS but still returned a Cloudflare challenge after 21.51s.",
+  "verification_command": "python3 apiified/ifm-practitioners/script.py --mode http --location 'Austin, TX' --radius-km 40 --limit 3 --pages 1",
+  "verification_result": "Direct HTTP listing run returned 10 records with 153 total available in 4.72s. Direct HTTP detail run returned 3 enriched profiles in 14.62s with email coverage for all 3 records; the first profile included 10 health concerns and 7 coursework values. Cookie-backed replay was not needed; IFM cookies made the tested replay return Cloudflare challenge responses.",
   "known_risks": [
-    "IFM uses Cloudflare managed challenge. New headless or plain HTTP sessions can be challenged.",
-    "Residential proxy support is useful for reachability but did not guarantee fresh-session access in the tested IFM run.",
-    "Use --headed for first-run verification, RESIDENTIAL_PROXY_URL where allowed, and --ignore-https-errors for SSL-inspection proxies unless the proxy CA is installed.",
-    "This is DOM extraction from public listing/detail pages, not a private JSON API.",
-    "Direct requests are intentionally not used because they returned Cloudflare 403 during discovery."
+    "IFM uses Cloudflare managed challenge and direct HTTP can intermittently return 403/challenge responses.",
+    "The script retries direct HTTP and auto mode falls back to browser DOM extraction when direct HTTP fails.",
+    "Residential proxy support is useful for reachability but did not guarantee fresh-session access in the tested IFM browser run.",
+    "Use --headed for first-run browser fallback verification, RESIDENTIAL_PROXY_URL where allowed, and --ignore-https-errors for SSL-inspection proxies unless the proxy CA is installed.",
+    "This is HTML extraction from public listing/detail pages, not an official public JSON API."
   ]
 }

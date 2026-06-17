@@ -6,7 +6,8 @@
     "lon": "-97.7436995",
     "radius_km": 40,
     "pages_requested": 1,
-    "details": true
+    "details": true,
+    "mode": "http"
   },
   "items": [
     {
@@ -48,8 +49,8 @@
     "https://www.ifm.org/practitioner-listings/30.2711286%2C-97.7436995%3C%3D40/30.2711286%2C-97.7436995%3C%3D40/no-country/469?geocode=30.2711286%2C-97.7436995&location=Austin%2C+TX&page=0&radius=40"
   ],
   "runtime": {
-    "approach": "browser-dom",
-    "browser_session": "ifm-detail",
+    "approach": "direct-http",
+    "browser_session": null,
     "proxy_used": false
   }
 }
