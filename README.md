@@ -50,6 +50,7 @@ From a shell:
 ```bash
 codex plugin marketplace add sabirmgd/apiify-skills
 codex plugin add apiify@apiify
+codex plugin list --available --json
 codex
 ```
 
@@ -64,6 +65,7 @@ For local development:
 ```bash
 codex plugin marketplace add .
 codex plugin add apiify@apiify
+codex plugin list --available --json
 codex
 ```
 
