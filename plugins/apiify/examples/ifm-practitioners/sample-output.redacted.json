@@ -1,0 +1,55 @@
+{
+  "query": {
+    "location": "Austin, TX",
+    "resolved_location": "Austin, Travis County, Texas, United States",
+    "lat": "30.2711286",
+    "lon": "-97.7436995",
+    "radius_km": 40,
+    "pages_requested": 1,
+    "details": true
+  },
+  "items": [
+    {
+      "name": "Shefaly Ravula, PA-C, IFMCP",
+      "profile_url": "https://www.ifm.org/practitioners/shefaly-ravula?distance_primary=0.6352682913298088",
+      "distance_miles": 0.4,
+      "distance_km": 0.64,
+      "phone": "[redacted-public-phone]",
+      "email": "[redacted-public-email]",
+      "website": "https://precisionguthealth.com/",
+      "schedule_url": "https://precisionguthealth.com/",
+      "offers_telehealth": true,
+      "card_summary": "Precision Gut Health",
+      "card_features": ["OFFERS TELEHEALTH"],
+      "detail_url": "https://www.ifm.org/practitioners/shefaly-ravula?distance_primary=0.6352682913298088",
+      "payment": "Fee for service / Cash-based",
+      "profile_last_updated": "04/09/2024",
+      "telehealth_locations": "Texas",
+      "health_concerns": [
+        "Autoimmune Disease",
+        "Cardiovascular Disease",
+        "Digestive Disorders"
+      ],
+      "coursework": [
+        "Applying Functional Medicine in Clinical Practice",
+        "GI Advanced Practice Module"
+      ],
+      "qualifications": [
+        "IFM Certified Practitioner"
+      ],
+      "professional_associations": [
+        "Institute for Functional Medicine"
+      ]
+    }
+  ],
+  "returned": 1,
+  "total_available": 153,
+  "pages_seen": [
+    "https://www.ifm.org/practitioner-listings/30.2711286%2C-97.7436995%3C%3D40/30.2711286%2C-97.7436995%3C%3D40/no-country/469?geocode=30.2711286%2C-97.7436995&location=Austin%2C+TX&page=0&radius=40"
+  ],
+  "runtime": {
+    "approach": "browser-dom",
+    "browser_session": "ifm-detail",
+    "proxy_used": false
+  }
+}

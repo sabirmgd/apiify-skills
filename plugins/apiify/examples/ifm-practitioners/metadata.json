@@ -1,0 +1,116 @@
+{
+  "name": "ifm-practitioners",
+  "source": "https://www.ifm.org/find-a-practitioner",
+  "approach": "browser-dom",
+  "runtime_tier": 4,
+  "description": "Search IFM's public practitioner directory by location and extract listing-card contact fields, with optional full-detail enrichment through a persistent browser session.",
+  "inputs": [
+    {
+      "name": "location",
+      "required": true,
+      "type": "string",
+      "example": "Austin, TX"
+    },
+    {
+      "name": "radius_km",
+      "required": false,
+      "type": "int",
+      "default": 40
+    },
+    {
+      "name": "pages",
+      "required": false,
+      "type": "int",
+      "default": 1
+    },
+    {
+      "name": "limit",
+      "required": false,
+      "type": "int",
+      "default": 10
+    },
+    {
+      "name": "details",
+      "required": false,
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "lat",
+      "required": false,
+      "type": "string",
+      "note": "Optional manual latitude to skip geocoding."
+    },
+    {
+      "name": "lon",
+      "required": false,
+      "type": "string",
+      "note": "Optional manual longitude to skip geocoding."
+    },
+    {
+      "name": "browser_session",
+      "required": false,
+      "type": "string",
+      "default": "ifm-practitioners-api"
+    },
+    {
+      "name": "proxy",
+      "required": false,
+      "type": "string",
+      "env": "RESIDENTIAL_PROXY_URL",
+      "note": "Optional residential proxy URL. Do not commit the value."
+    },
+    {
+      "name": "ignore_https_errors",
+      "required": false,
+      "type": "boolean",
+      "env": "IFM_IGNORE_HTTPS_ERRORS",
+      "default": false,
+      "note": "Useful for SSL-inspection residential proxies when their CA is not installed in the browser profile."
+    }
+  ],
+  "outputs": [
+    "name",
+    "profile_url",
+    "distance_miles",
+    "distance_km",
+    "phone",
+    "email",
+    "website",
+    "schedule_url",
+    "offers_telehealth",
+    "card_summary",
+    "card_features",
+    "detail_url",
+    "payment",
+    "profile_last_updated",
+    "telehealth_locations",
+    "health_concerns",
+    "coursework",
+    "qualifications",
+    "professional_associations"
+  ],
+  "auth": {
+    "type": "none",
+    "note": "Uses public IFM directory pages. A persistent browser session may need one headed Cloudflare verification before unattended reuse."
+  },
+  "endpoints": [
+    "GET /practitioner-listings/{lat_lon_radius}/{lat_lon_radius}/no-country/469?...",
+    "GET /practitioners/{slug}?distance_primary=..."
+  ],
+  "pagination": {
+    "type": "page",
+    "fields": ["page"],
+    "page_size_observed": 10
+  },
+  "verified_at": "2026-06-18",
+  "verification_command": "python3 apiified/ifm-practitioners/script.py --location 'Austin, TX' --radius-km 40 --limit 3 --pages 1 --browser-session ifm-detail",
+  "verification_result": "Warmed browser listing run returned 3 records in 10.46s with 153 total available. Warmed detail run returned one enriched profile in 18.71s with top-level detail_url, 10 health concerns, and 7 coursework values. Fresh residential-proxy run handled TLS but still returned a Cloudflare challenge after 21.51s.",
+  "known_risks": [
+    "IFM uses Cloudflare managed challenge. New headless or plain HTTP sessions can be challenged.",
+    "Residential proxy support is useful for reachability but did not guarantee fresh-session access in the tested IFM run.",
+    "Use --headed for first-run verification, RESIDENTIAL_PROXY_URL where allowed, and --ignore-https-errors for SSL-inspection proxies unless the proxy CA is installed.",
+    "This is DOM extraction from public listing/detail pages, not a private JSON API.",
+    "Direct requests are intentionally not used because they returned Cloudflare 403 during discovery."
+  ]
+}

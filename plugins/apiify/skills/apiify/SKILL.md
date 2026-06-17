@@ -23,7 +23,7 @@ python3 scripts/bootstrap.py --user
 python3 scripts/doctor.py
 ```
 
-Do not paste user passwords, cookies, bearer tokens, or session IDs into chat or command history. Prefer headed browser login, browser state files, local `.env` files, or one-time throwaway credentials.
+Do not paste user passwords, cookies, bearer tokens, proxy URLs, or session IDs into chat or command history. Prefer headed browser login, browser state files, local `.env` files, or one-time throwaway credentials.
 
 The standard public harness is `agent-browser@0.15.1`, installed by `scripts/bootstrap.py` and verified by `scripts/doctor.py`. Do not assume ActionHub, ahbrowser, Patchright, or Playwright are already present on the user's machine. If a generated artifact needs a browser, use the packaged harness unless the artifact explicitly owns and documents another dependency.
 
@@ -62,6 +62,18 @@ agent-browser --session "<slug>" cookies get
 agent-browser --session "<slug>" screenshot "/tmp/<slug>.png"
 agent-browser --session "<slug>" close
 ```
+
+### Residential Proxy and Challenge Handling
+
+Use proxy support when the site is geo-sensitive, rate-limited, blocks plain HTTP clients, or shows Cloudflare/security challenges in new browser profiles. Keep proxy configuration optional and secret-safe:
+
+- Add a script flag such as `--proxy`, defaulting to `RESIDENTIAL_PROXY_URL`.
+- Pass the proxy to `agent-browser` only when supplied.
+- Add a TLS option such as `--ignore-https-errors` when an SSL-inspection proxy requires a custom CA that is not installed in the browser profile.
+- Redact full proxy URLs from logs, metadata, samples, and final reports.
+- Verify fresh and reused browser sessions separately.
+
+Do not claim a residential proxy bypasses a challenge unless a reset browser session with that proxy actually returns data. If a fresh proxy session still shows a managed challenge, report that clearly and package the artifact as browser-backed with first-run verification or persistent-session requirements.
 
 Use browser discovery to answer two questions:
 
